@@ -85,6 +85,7 @@ def validate_password(password):
         - Contains at least one uppercase letter.
         - Contains at least one numeric digit.
         - Has a minimum length of 8 characters.
+        - Contains exactly one special character.
     
     Parameter:
         password (str): The password entered by the user.
@@ -92,7 +93,7 @@ def validate_password(password):
     Return:
         bool: True if the password is valid, False otherwise.
     """
-    pattern = r"^(?=.*[A-Z])(?=.*\d).{8,}$"
+    pattern = r"^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$"
     
     if re.match(pattern, password):
         logger.info("Password validation passed")
@@ -108,6 +109,11 @@ def validate_password(password):
     
         if not re.search(r"\d", password):
             logger.error("Invalid Password: %s. Password must contain at least one numeric digit.", password)
+            return False
+        
+        special_chars = r"[!@#$%^&*]"
+        if len(re.findall(special_chars, password)) != 1:
+            logger.error("Invalid Password: %s. Password must contain exactly one special character.", password)
             return False
     
 
