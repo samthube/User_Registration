@@ -81,7 +81,9 @@ def validate_mobile(mobile):
 def validate_password(password):
     """
     Description:
-        Validates if the password contains at least one uppercase or lowercase letter and has a minimum length of 8 characters.
+        Validates if the password meets the following criteria:
+        - Contains at least one uppercase letter.
+        - Has a minimum length of 8 characters.
     
     Parameter:
         password (str): The password entered by the user.
@@ -89,13 +91,14 @@ def validate_password(password):
     Return:
         bool: True if the password is valid, False otherwise.
     """
-    pattern = r"^[a-zA-Z0-9]{8,}$"
+    pattern = r"^(?=.*[A-Z]).{8,}$"
     
     if re.match(pattern, password):
         logger.info("Password validation passed")
         return True
-    logger.error("Invalid Password: %s. Password must be at least 8 characters long.", password)
-    return False 
+    logger.error("Invalid Password: %s. Password must have at least 1 uppercase letter and be 8 characters long.", password)
+    return False
+
 
 def main():
     first_name = input("Enter your first name: ")
