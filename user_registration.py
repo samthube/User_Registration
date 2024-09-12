@@ -77,13 +77,32 @@ def validate_mobile(mobile):
         return True
     logger.error("Invalid mobile number: %s", mobile)
     return False
+   
+def validate_password(password):
+    """
+    Description:
+        Validates if the password contains at least one uppercase or lowercase letter and has a minimum length of 8 characters.
     
+    Parameter:
+        password (str): The password entered by the user.
+    
+    Return:
+        bool: True if the password is valid, False otherwise.
+    """
+    pattern = r"^[a-zA-Z0-9]{8,}$"
+    
+    if re.match(pattern, password):
+        logger.info("Password validation passed")
+        return True
+    logger.error("Invalid Password: %s", password)
+    return False 
 
 def main():
     first_name = input("Enter your first name: ")
     last_name = input("Enter your last name: ")
     email = input("Enter your email: ")
     mobile = input("Enter your mobile no: ")
+    password = input("Enter your password: ")
     
     if validate_first_name(first_name):
         print("First name is valid.")
@@ -104,6 +123,11 @@ def main():
         print("Mobile number is valid.")
     else:
         print("Invalid mobile number.")
+        
+    if validate_password(password):
+        print("password is valid.")
+    else:
+        print("Invalid password")
              
 
 if __name__ == "__main__":

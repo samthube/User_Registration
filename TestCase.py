@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import patch
 import user_registration
 
 class TestUserRegistration(unittest.TestCase):
@@ -39,6 +38,19 @@ class TestUserRegistration(unittest.TestCase):
         self.assertFalse(user_registration.validate_mobile("919876543210"))
         self.assertFalse(user_registration.validate_mobile("91 98765432"))
         self.assertFalse(user_registration.validate_mobile("9876543210"))
+        
+    def test_validate_password(self):
+        
+        self.assertTrue(user_registration.validate_password("Password123"))
+        self.assertTrue(user_registration.validate_password("Valid123"))
+        self.assertTrue(user_registration.validate_password("abcdefgh"))
+        self.assertTrue(user_registration.validate_password("PassWord8"))
+
+        self.assertFalse(user_registration.validate_password("short7"))     
+        self.assertFalse(user_registration.validate_password("abc"))        
+        self.assertFalse(user_registration.validate_password("1234567"))   
+        self.assertFalse(user_registration.validate_password(""))           
+        self.assertFalse(user_registration.validate_password("Aa1")) 
 
 if __name__ == "__main__":
     unittest.main()
