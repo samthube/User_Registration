@@ -18,7 +18,7 @@ def validate_first_name(first_name):
     if re.match(pattern, first_name):
         logger.info("First name validation passed")
         return True
-    logger.error("Invalid first name: %s", first_name)
+    logger.error("Invalid first name: %s. First name must start with a capital letter and be at least 3 characters long.", first_name)
     return False
 
 def validate_last_name(last_name):
@@ -33,10 +33,10 @@ def validate_last_name(last_name):
         bool: True if the last name is valid, False otherwise.
     """
     pattern = r"^[A-Z][a-zA-Z]{2,}$"
-    if re.match(pattern,last_name):
+    if re.match(pattern, last_name):
         logger.info("Last name validation passed")
         return True
-    logger.error("Invalid last name: %s", last_name)
+    logger.error("Invalid last name: %s. Last name must start with a capital letter and be at least 3 characters long.", last_name)
     return False
 
 def validate_email(email):
@@ -53,10 +53,10 @@ def validate_email(email):
     """
     pattern =r"^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2})?$"
     
-    if re.match(pattern,email):
+    if re.match(pattern, email):
         logger.info("Email validation passed")
         return True
-    logger.error("Invalid email: %s", email)
+    logger.error("Invalid email: %s. Email must be in the format abc.xyz@bl.co.in or abc@bl.co", email)
     return False
 
 def validate_mobile(mobile):
@@ -75,7 +75,7 @@ def validate_mobile(mobile):
     if re.match(pattern, mobile):
         logger.info("Mobile number validation passed")
         return True
-    logger.error("Invalid mobile number: %s", mobile)
+    logger.error("Invalid mobile number: %s. Mobile number must be in the format 'XX XXXXXXXXXX'.", mobile)
     return False
    
 def validate_password(password):
@@ -94,7 +94,7 @@ def validate_password(password):
     if re.match(pattern, password):
         logger.info("Password validation passed")
         return True
-    logger.error("Invalid Password: %s", password)
+    logger.error("Invalid Password: %s. Password must be at least 8 characters long.", password)
     return False 
 
 def main():
@@ -104,31 +104,11 @@ def main():
     mobile = input("Enter your mobile no: ")
     password = input("Enter your password: ")
     
-    if validate_first_name(first_name):
-        print("First name is valid.")
-    else:
-        print("Invalid first name. Please ensure it starts with a capital letter and is at least 3 characters long.")
-
-    if validate_last_name(last_name):
-        print("Last name is valid.")
-    else:
-        print("Invalid last name. Please ensure it starts with a capital letter and is at least 3 characters long.")
-    
-    if validate_email(email):
-        print("Email is valid.")
-    else:
-        print("Invalid email.")
-        
-    if validate_mobile(mobile):
-        print("Mobile number is valid.")
-    else:
-        print("Invalid mobile number.")
-        
-    if validate_password(password):
-        print("password is valid.")
-    else:
-        print("Invalid password")
-             
+    validate_first_name(first_name)
+    validate_last_name(last_name)
+    validate_email(email)
+    validate_mobile(mobile)
+    validate_password(password)
 
 if __name__ == "__main__":
     main()
