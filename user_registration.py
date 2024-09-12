@@ -7,6 +7,9 @@
 '''
 
 import re
+import mylogging
+
+logger = mylogging.logger_init('user_registration')
 
 def validate_first_name(first_name):
     """
@@ -21,7 +24,9 @@ def validate_first_name(first_name):
     """
     pattern = r"^[A-Z][a-zA-Z]{2,}$"
     if re.match(pattern, first_name):
+        logger.info("First name validation passed")
         return True
+    logger.error("Invalid first name: %s", first_name)
     return False
 
 def validate_last_name(last_name):
@@ -37,7 +42,9 @@ def validate_last_name(last_name):
     """
     pattern = r"^[A-Z][a-zA-Z]{2,}$"
     if re.match(pattern,last_name):
+        logger.info("Last name validation passed")
         return True
+    logger.error("Invalid last name: %s", last_name)
     return False
 
 def main():
