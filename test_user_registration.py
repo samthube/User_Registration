@@ -30,15 +30,17 @@ def test_validate_mobile():
     assert user_registration.validate_mobile("9876543210") == False
 
 def test_validate_password():
-    assert user_registration.validate_password("Password1") == True
-    assert user_registration.validate_password("Valid123") == True
-    assert user_registration.validate_password("PassWord8") == True
+    assert user_registration.validate_password("Password1!") == True
+    assert user_registration.validate_password("A1b2c3d4!") == True
+    assert user_registration.validate_password("GoodPass1@") == True
+    assert user_registration.validate_password("Strong1$") == True
 
-    assert user_registration.validate_password("password") == False   
-    assert user_registration.validate_password("Passwrd") == False    
-    assert user_registration.validate_password("Pass123") == False    
-    assert user_registration.validate_password("12345678") == False   
-    assert user_registration.validate_password("Password") == False   
+    assert user_registration.validate_password("password1") == False    
+    assert user_registration.validate_password("Password1") == False    
+    assert user_registration.validate_password("Password!!") == False   
+    assert user_registration.validate_password("Pass1!") == False       
+    assert user_registration.validate_password("12345678!") == False    
+    assert user_registration.validate_password("Password!") == False  
 
 
 if __name__ == "__main__":
