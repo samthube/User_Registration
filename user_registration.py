@@ -51,7 +51,7 @@ def validate_email(email):
     Return:
         bool: True if the email is valid, False otherwise.
     """
-    pattern =r"^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2})?$"
+    pattern = r'^[a-zA-Z0-9]+([._%+-][a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$'
     
     if re.match(pattern, email):
         logger.info("Email validation passed")
