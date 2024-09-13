@@ -16,11 +16,29 @@ def test_validate_last_name():
     assert user_registration.validate_last_name("d") == False
 
 def test_validate_email():
-    assert user_registration.validate_email("abc@bl.co") == True
-    assert user_registration.validate_email("abc.xyz@bl.co.in") == True
-    assert user_registration.validate_email("abc@bl") == False
-    assert user_registration.validate_email("abc@bl.") == False
-    assert user_registration.validate_email("abc.xyz@bl.co.inn") == False
+    assert user_registration.validate_email("abc@yahoo.com") == True
+    assert user_registration.validate_email("abc-100@yahoo.com") == True
+    assert user_registration.validate_email("abc.100@yahoo.com") == True
+    assert user_registration.validate_email("abc111@abc.com") == True
+    assert user_registration.validate_email("abc111@abc.net") == True
+    assert user_registration.validate_email("abc.100@abc.com.au") == True
+    assert user_registration.validate_email("abc@1.com") == True
+    assert user_registration.validate_email("abc@gmail.com.com") == True
+    assert user_registration.validate_email("abc+100@gmail.com") == True
+   
+    assert user_registration.validate_email("abc") == False
+    assert user_registration.validate_email("abc@.com.my") == False
+    assert user_registration.validate_email("abc123@.com") == False
+    assert user_registration.validate_email("abc123@.com.com") == False
+    assert user_registration.validate_email(".abc@abc.com") == False
+    assert user_registration.validate_email("abc()*@gmail.com") == False
+    assert user_registration.validate_email("abc@%*.com") == False
+    assert user_registration.validate_email("abc..2002@gmail.com") == False
+    assert user_registration.validate_email("abc.@gmail.com") == False
+    assert user_registration.validate_email("abc@abc@gmail.com") == False
+    assert user_registration.validate_email("abc@gmail.com.1a") == False
+    assert user_registration.validate_email("abc@gmail.com.aa.au") == False
+    
 
 def test_validate_mobile():
     assert user_registration.validate_mobile("91 9876543210") == True
